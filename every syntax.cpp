@@ -77,6 +77,7 @@ std::cout << "The smallest element is " << *std::min_element(myints,myints+7) <<
 memset(dp, 0, sizeof(dp));
 // for 2d array:
 memset(array, 0, sizeof(array[0][0]) * m * n);
+memset(array, 0, sizeof(array));  // this also works
 
 // copy an array into another array
 copy(arr, arr + n, arr2);
@@ -231,7 +232,10 @@ map<int, int> m1;   // tree map : keys are ordered; O(logn) - insertion, deletio
 unordered_map<int, int> m2; // hash map; avg - O(1) but worst case O(n)
 set<int> s1;
 unordered_set<int> s2;
-
+// doubly linked list : list
+list<int> mylist (2,100);         // two ints with a value of 100
+mylist.push_front (200);
+mylist.push_front (300);
 
 
 // =================================== I/O =====================================================
@@ -240,6 +244,10 @@ ifstream input;
 input.open(filename);
 string transactionLine;
 while(getline(input, transactionLine)) {
+
+
+// get input untill you get EOF
+while(cin >> s){
 
 
 // flush the output
