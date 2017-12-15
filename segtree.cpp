@@ -20,15 +20,15 @@ void build(int l=0, int r=n, int node=1){
 }
 
 void modify(int p, int x, int l=0, int r=n, int node=1){
-	s[node] += x - a[p];
+	// s[node] += x - a[p];
 	if (r-l==1){
-		// s[node] = x;
-		a[p] = x;
+		s[node] = x;
+		a[p] = x;	// not required
 		return;
 	}
-	// s[node] += x - a[p];
 	if (p < mid(l, r)) modify(p, x, l, mid(l, r), 2*node);
 	else modify(p, x, mid(l, r), r, 2*node+1);
+	s[node] = s[2*node] + s[2*node+1];
 }
 
 int sum(int x, int y, int l=0, int r=n, int node=1){
