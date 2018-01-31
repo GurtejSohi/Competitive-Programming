@@ -11,7 +11,7 @@ int mytime = 0;
 vector< vector<int> > connectedComp;
 vector<int> currentComp;
 
-void dfs(int node, int i){
+void dfs(int node, int i){	// i=0-> normal dfs; i=1-> dfs on reversed graph;
 	vis[node] = 1;
 	// if (i==0) dis[node] = ++mytime;
 	for(int ch : adj[i][node]){

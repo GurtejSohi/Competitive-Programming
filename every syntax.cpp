@@ -11,7 +11,7 @@ vector<string> split(string const &input) {
 // length of string
 s.length();
 
-// convert int to string
+// convert int/double to string : c++11
 std::string s = std::to_string(42);
 
 // convert string to int : 
@@ -26,6 +26,11 @@ std::string str="We think in generalities, but we live in details."; // (quoting
 std::string str2 = str.substr (3,5);     // "think"
 std::size_t pos = str.find("live");      // position of "live" in str
 std::string str3 = str.substr (pos);     // get from "live" to the end
+
+// sort string
+string word = "dcab";
+std::sort(word.begin(), word.end());  // sorts in-place; word = "abcd";
+sort(word.rbegin(), word.rend());     // word = "dcba";
 
 
 
@@ -176,6 +181,23 @@ vector< vector<int> > ans(2*A-1, vector<int>(2*A-1));
 myvector.pop_back();  // opposite of push_back(i);
 
 
+// ----------------------------------- SET -------------------------------------------------
+// In set(implemented as BST), insertion and deletion take place in O(logn) time.(counterpart of map(tree map))
+// In unordered_set(implemented as hash map), insertion and deletion take place in O(1) expected time(worst case culd be O(n)).(counterpart of unordered_map)
+
+//Using custom comparator for set: https://stackoverflow.com/questions/2620862/using-custom-stdset-comparator
+// ex - used in 899E
+
+// erase in set:
+set<int> s;
+s.insert(4);  s.insert(8);
+auto it = s.begin();
+s.erase(it);    // it won't be a valid pointer here
+cout << << *it << " " << *s.begin() << endl; // 4 8; it still points to 4
+
+// So, instead of s.erase(it), do:
+s.erase(it++);
+
 
 // ----------------------------------- ORDERED SET -------------------------------------------------
 // ordered tree: (C++ STL: Policy based data structures  Codeforces)
@@ -236,6 +258,7 @@ unordered_set<int> s2;
 list<int> mylist (2,100);         // two ints with a value of 100
 mylist.push_front (200);
 mylist.push_front (300);
+// used mylist in problem 899E -> see in topic-wise practice->linked list
 
 
 // =================================== I/O =====================================================
@@ -244,6 +267,15 @@ ifstream input;
 input.open(filename);
 string transactionLine;
 while(getline(input, transactionLine)) {
+
+
+// write to a file
+void writeFile(string ans){
+  ofstream outp;
+  outp.open("output.txt");
+  outp << ans;
+  outp.close();
+}
 
 
 // get input untill you get EOF
@@ -262,9 +294,12 @@ scanf("%lld %lld", &p, &q);
 // How do I print a double value with full precision using cout?
 // You can set the precision directly on std::cout and use the std::fixed format specifier.
 double d = 3.14159265358979;
-cout.precision(17);
+cout.precision(17); // 17 places including the digits before the decimal.
 cout << "Pi: " << fixed << d << endl;
 
+// faster input:
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
 
 
 
@@ -365,16 +400,6 @@ int main(){
 // ------------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// reverse :
+for (int i=1; i<10; ++i) myvector.push_back(i);   // 1 2 3 4 5 6 7 8 9
+std::reverse(myvector.begin(),myvector.end());    // 9 8 7 6 5 4 3 2 1
